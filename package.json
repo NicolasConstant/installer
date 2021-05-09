@@ -127,11 +127,6 @@
     "tabler-icons-react": "~1.33.0",
     "walkdir": "^0.4.1"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npx lint-staged"
-    }
-  },
   "lint-staged": {
     "*.{ts,tsx}": [
       "npm run lint:fix"
