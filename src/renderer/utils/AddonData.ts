@@ -1,7 +1,7 @@
 import { Mod, ModTrack, GithubBranchReleaseModel } from "renderer/utils/InstallerConfiguration";
 import { GitVersions, NXApi } from "@flybywiresim/api-client";
 
-NXApi.url = new URL('http://localhost:3000');
+NXApi.url = new URL('http://localhost:9001');
 
 export type ReleaseInfo = {
     name: string,
