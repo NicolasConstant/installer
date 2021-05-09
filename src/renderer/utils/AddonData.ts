@@ -1,5 +1,7 @@
 import { Mod, ModTrack, GithubBranchReleaseModel } from "renderer/utils/InstallerConfiguration";
-import { GitVersions } from "@flybywiresim/api-client";
+import { GitVersions, NXApi } from "@flybywiresim/api-client";
+
+NXApi.url = new URL('http://localhost:3000');
 
 export type ReleaseInfo = {
     name: string,
@@ -18,7 +20,7 @@ export class AddonData {
     }
 
     private static async latestVersionForReleasedTrack(mod: Mod): Promise<ReleaseInfo> {
-        return GitVersions.getReleases('flybywiresim', mod.repoName)
+        return GitVersions.getReleases(mod.creatorName, mod.repoName)
             .then((releases) => ({
                 name: releases[0].name,
                 releaseDate: releases[0].publishedAt,
@@ -27,7 +29,7 @@ export class AddonData {
     }
 
     private static async latestVersionForRollingTrack(mod: Mod, releaseModel: GithubBranchReleaseModel): Promise<ReleaseInfo> {
-        return GitVersions.getNewestCommit('flybywiresim', mod.repoName, releaseModel.branch)
+        return GitVersions.getNewestCommit(mod.creatorName, mod.repoName, releaseModel.branch)
             .then((commit) => ({
                 name: commit.sha.substring(0, 7),
                 releaseDate: commit.timestamp,

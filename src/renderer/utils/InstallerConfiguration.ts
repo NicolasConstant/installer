@@ -33,6 +33,7 @@ export type ExperimentalModTrack = BaseModTrack & { isExperimental: true, warnin
 export type ModTrack = MainlineModTrack | ExperimentalModTrack;
 
 export type Mod = {
+    creatorName: string,
     name: string,
     repoName: string,
     aircraftName: string,
